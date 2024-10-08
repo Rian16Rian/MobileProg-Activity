@@ -13,7 +13,7 @@ export default function DarkMode({ theme, toggleTheme, darkMode }) {
           {darkMode ? 'Light Mode' : 'Dark Mode'}
         </Text>
         <View style={styles.right}>
-          <FontAwesome name="chevron-right" size={15} color="gray" />
+          <FontAwesome name="chevron-right" size={15} color="white" />
         </View>
       </TouchableOpacity>
     </View>
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: 'pink',
+    backgroundColor: '#ec8e17',
     justifyContent: 'center',
     alignItems: 'center',
   },
