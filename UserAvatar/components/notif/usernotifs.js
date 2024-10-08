@@ -6,7 +6,7 @@ export default function Notifications({ theme }) {
   return (
     <View style={[styles.container, theme.container]}>
       <View style={styles.circle}>
-        <MaterialIcons name="notifications-none" size={24} color="black" />
+        <MaterialIcons name="notifications-none" size={24} color="#f66e52" />
       </View>
       <TouchableOpacity style={styles.button}>
         <Text style={[styles.text, theme.text]}>Notifications</Text>
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: 'lavender',
+    backgroundColor: 'pink',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: '#eeccff',
+    backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
   },

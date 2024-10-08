@@ -29,11 +29,11 @@ export const Dark = {
   
   export const Light = {
     container: {
-      backgroundColor: 'white',
-      color: 'black',
+      backgroundColor: '#97cfe4',
+      color: 'white',
     },
     text: {
-      color: 'black',
+      color: 'white',
     },
     
   };

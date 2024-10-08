@@ -6,7 +6,7 @@ export default function Manage({ theme }) {
   return (
     <View style={[styles.container, theme.container]}>
       <View style={styles.circle}>
-        <FontAwesome5 name="dot-circle" size={24} color='coral' />
+        <FontAwesome5 name="dot-circle" size={24} color='#f9690b' />
       </View>
       <TouchableOpacity style={styles.button}>
         <Text style={[styles.text, theme.text]}>Manage user</Text>
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: 'lavender',
+    backgroundColor: 'pink',
     justifyContent: 'center',
     alignItems: 'center',
   },

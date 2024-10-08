@@ -19,12 +19,13 @@ const styles = StyleSheet.create({
   },
   first: {
     fontSize: 30,
+    color: '#228ab0',
     fontFamily: 'extraBold',
   },
   second: {
     fontSize: 30,
     marginTop: -20,
-    color: 'gray',
+    color: 'white',
     fontFamily: 'extraBold',
   },
 

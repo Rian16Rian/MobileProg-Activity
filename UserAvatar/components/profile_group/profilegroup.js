@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
+    color: '#0c90c1',
     fontFamily: 'semiBold',
   },
   

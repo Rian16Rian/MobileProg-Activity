@@ -1,5 +1,4 @@
 import React, { createContext, useState, useContext } from 'react';
-import { View, Text, Image, Stylesheet } from 'react-native';
 
 const ThemeContext = createContext();
 

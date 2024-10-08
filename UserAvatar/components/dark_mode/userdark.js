@@ -6,7 +6,7 @@ export default function DarkMode({ theme, toggleTheme, darkMode }) {
   return (
     <View style={[styles.container, theme.container]}>
       <View style={styles.circle}>
-        <Feather name="moon" size={24} color="royalblue" />
+        <Feather name="moon" size={24} color="white" />
       </View>
       <TouchableOpacity style={styles.button} onPress={toggleTheme}>
         <Text style={[styles.text, theme.text]}>
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: 'lavender',
+    backgroundColor: 'pink',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: '#cce5ff',
+    backgroundColor: '#63625c',
     justifyContent: 'center',
     alignItems: 'center',
   },
