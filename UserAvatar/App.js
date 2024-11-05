@@ -1,6 +1,8 @@
+import React, { useState } from 'react';
+import Login from './profile/Login';
 import UserAvatar from './profile/userprofile';
 import { useFonts } from 'expo-font';
-import { ThemeProvider } from './Theme';;
+import { ThemeProvider } from './Theme';
 
 export default function App() {
   const [loadedFonts] = useFonts({
@@ -10,13 +12,23 @@ export default function App() {
     'extraBold': require('./assets/fonts/Poppins-ExtraBold.ttf'),
   });
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLogin = () => {
+    setIsLoggedIn(true); 
+  };
+
   if (!loadedFonts) {
-    return null;
+    return null; 
   }
 
   return (
     <ThemeProvider>
-      <UserAvatar />
+      {isLoggedIn ? (  
+        <UserAvatar /> 
+      ) : (
+        <Login onLogin={handleLogin} /> 
+      )}
     </ThemeProvider>
   );
 }
