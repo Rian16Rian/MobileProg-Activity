@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, KeyboardAvoidingView, Platform, ScrollView, Image, Dimensions } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { View, StyleSheet, KeyboardAvoidingView, Platform, ScrollView, Image, Dimensions, ImageBackground } from 'react-native';
+import InputField from '../components/logincomp/InputField';
+import Checkbox from '../components/logincomp/Checkbox';
+import Button from '../components/logincomp/Button';
+import ForgotPasswordLink from '../components/logincomp/ForgotPasswordLink';
 
-const Login = ({ onLogin }) => {
+const Login = ({ onLogin, onSignUp, onForgotPassword }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
@@ -16,58 +19,52 @@ const Login = ({ onLogin }) => {
     }
   };
 
-  return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={styles.container}
-    >
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
-        <View style={styles.logoContainer}>
-          <Image
-            source={require('./../assets/tweeter.png')}
-            style={styles.logo}
-          />
-        </View>
+  const handleSignUp = () => {
+    if (onSignUp) {
+      onSignUp();
+    }
+  };
 
-        <View style={styles.formContainer}>
-          {}
-          <View style={[styles.inputBoxContainer, { width: screenWidth * 0.75 }]}>
-            <TextInput
-              style={styles.input}
+  const handleForgotPassword = () => {
+    if (onForgotPassword) {
+      onForgotPassword();
+    }
+  };
+
+  return (
+    <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.container}>
+      <ImageBackground
+        source={require('../assets/tweeterbg.jpg')} 
+        style={styles.backgroundImage}
+        resizeMode="cover"
+      >
+        <ScrollView contentContainerStyle={styles.scrollContainer}>
+          <View style={styles.logoContainer}>
+            <Image source={require('../assets/tweeter.png')} style={styles.logo} />
+          </View>
+
+          <View style={styles.formContainer}>
+            <InputField
               placeholder="Email"
-              keyboardType="email-address"
               value={email}
               onChangeText={setEmail}
-              autoCapitalize="none"
+              keyboardType="email-address"
+              screenWidth={screenWidth}
             />
-          </View>
-
-          {}
-          <View style={[styles.inputBoxContainer, { width: screenWidth * 0.75 }]}>
-            <TextInput
-              style={styles.input}
+            <InputField
               placeholder="Password"
-              secureTextEntry
               value={password}
               onChangeText={setPassword}
+              secureTextEntry
+              screenWidth={screenWidth}
             />
+            <Checkbox rememberMe={rememberMe} setRememberMe={setRememberMe} />
+            <Button onPress={handleLogin} text="Log In" style={styles.loginButton} textStyle={styles.loginButtonText} />
+            <Button onPress={handleSignUp} text="Sign Up" style={styles.signUpButton} textStyle={styles.signUpButtonText} />
+            <ForgotPasswordLink onPress={handleForgotPassword} />
           </View>
-
-          <View style={styles.rememberMeContainer}>
-            <TouchableOpacity onPress={() => setRememberMe(!rememberMe)} style={styles.checkboxContainer}>
-              <View style={[styles.checkbox, rememberMe && styles.checkedCheckbox]}>
-                {}
-                {rememberMe && <Icon name="check" size={12} color="#fff" style={styles.checkmarkIcon} />}
-              </View>
-              <Text style={styles.rememberMeText}>Remember Me?</Text>
-            </TouchableOpacity>
-          </View>
-
-          <TouchableOpacity onPress={handleLogin} style={styles.loginButton}>
-            <Text style={styles.loginButtonText}>Log In</Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </ImageBackground>
     </KeyboardAvoidingView>
   );
 };
@@ -75,77 +72,39 @@ const Login = ({ onLogin }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingTop: 50,
-    backgroundColor: '#fff',
   },
+  
+  backgroundImage: {
+    flex: 1, 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+  },
+
   scrollContainer: {
     justifyContent: 'center',
     alignItems: 'center',
     paddingBottom: 20,
     width: '100%',
   },
+
   logoContainer: {
     alignItems: 'center',
-    marginBottom: 30,
+    marginTop: 30,
+    marginBottom: 20,
   },
+
   logo: {
     width: 150,
     height: 165,
     resizeMode: 'contain',
   },
+
   formContainer: {
     width: '90%',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  inputBoxContainer: {
-    height: 65,
-    marginVertical: 8,
-    justifyContent: 'center',
-    padding: 8,
-    borderWidth: 2,
-    borderColor: '#ccc',
-    borderRadius: 8,
-  },
-  input: {
-    width: '100%',
-    height: 45,
-    paddingHorizontal: 10,
-    fontSize: 15,
-    backgroundColor: '#f9f9f9',
-  },
-  rememberMeContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: 12,
-  },
-  checkboxContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  checkbox: {
-    width: 18,
-    height: 18,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 5,
-    marginRight: 8,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  checkedCheckbox: {
-    backgroundColor: '#1ca1f1',
-  },
-  checkmarkIcon: {
-    position: 'absolute',
-    top: 2,
-    left: 2,
-  },
-  rememberMeText: {
-    fontSize: 14,
-  },
+
   loginButton: {
     width: '100%',
     padding: 13,
@@ -154,9 +113,26 @@ const styles = StyleSheet.create({
     marginVertical: 12,
     alignItems: 'center',
   },
+
   loginButtonText: {
     color: '#fff',
     fontSize: 17,
+  },
+
+  signUpButton: {
+    width: '100%',
+    padding: 10,
+    backgroundColor: '#fff',
+    borderRadius: 5,
+    marginVertical: 12,
+    alignItems: 'center',
+    borderColor: '#FFFFFF',
+    borderWidth: 1,
+  },
+
+  signUpButtonText: {
+    color: '#1ca1f1',
+    fontSize: 16,
   },
 });
 
